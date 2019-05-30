@@ -11,18 +11,20 @@ def client(msg, log_buffer=sys.stderr):
         socket.IPPROTO_TCP)
     print('connecting to {0} port {1}'.format(*server_address), file=log_buffer)
     
-    # Connect your socket to the server here.
+    # Connect your socket to the server.
     sock = sock.connect(server_address)
-    # you can use this variable to accumulate the entire message received back
-    # from the server
+    
+    # Variable to accumulate the entire message received back
+    # from the server.
     received_message = ''
 
-    # this try/finally block exists purely to allow us to close the socket
-    # when we are finished with it
+    # This try/finally block exists purely to allow us to close the socket
+    # when we are finished with it.
     try:
         print('sending "{0}"'.format(msg), file=log_buffer)
-        # TODO: send your message to the server here.
-
+        # Send your message to the server.
+        sock.sendall(msg.encode('utf8'))
+        
         # TODO: the server should be sending you back your message as a series
         #       of 16-byte chunks. Accumulate the chunks you get to build the
         #       entire reply from the server. Make sure that you have received
