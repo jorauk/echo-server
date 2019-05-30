@@ -54,19 +54,15 @@ def server(log_buffer=sys.stderr):
                 traceback.print_exc()
                 sys.exit(1)
             finally:
-                # TODO: When the inner loop exits, this 'finally' clause will
-                #       be hit. Use that opportunity to close the socket you
-                #       created above when a client connected.
+                #       Close the socket created above.
+                conn.close()
                 print(
                     'echo complete, client connection closed', file=log_buffer
                 )
 
     except KeyboardInterrupt:
-        # TODO: Use the python KeyboardInterrupt exception as a signal to
-        #       close the server socket and exit from the server function.
-        #       Replace the call to `pass` below, which is only there to
-        #       prevent syntax problems
-        pass
+        #       Close the server socket and exit from the server function.
+        sock.close()
         print('quitting echo server', file=log_buffer)
 
 
