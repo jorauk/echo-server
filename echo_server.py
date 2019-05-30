@@ -28,25 +28,17 @@ def server(log_buffer=sys.stderr):
         while True:
             print('waiting for a connection', file=log_buffer)
 
-            # TODO: make a new socket when a client connects, call it 'conn',
-            #       at the same time you should be able to get the address of
-            #       the client so we can report it below.  Replace the
-            #       following line with your code. It is only here to prevent
-            #       syntax errors
+            # Make a new socket when a client connects.
             conn, addr = sock.accept()
             try:
                 print('connection - {0}:{1}'.format(*addr), file=log_buffer)
 
-                # the inner loop will receive messages sent by the client in
+                # The inner loop will receive messages sent by the client in
                 # buffers.  When a complete message has been received, the
                 # loop will exit
                 while True:
-                    # TODO: receive 16 bytes of data from the client. Store
-                    #       the data you receive as 'data'.  Replace the
-                    #       following line with your code.  It's only here as
-                    #       a placeholder to prevent an error in string
-                    #       formatting
-                    data = b''
+                    # Receive 16 bytes of data from the client.
+                    data = conn.recv(16)
                     print('received "{0}"'.format(data.decode('utf8')))
                     
                     # TODO: Send the data you received back to the client, log
