@@ -12,7 +12,7 @@ def client(msg, log_buffer=sys.stderr):
     print('connecting to {0} port {1}'.format(*server_address), file=log_buffer)
     
     # Connect your socket to the server.
-    sock = sock.connect(server_address)
+    sock.connect(server_address)
     
     # Variable to accumulate the entire message received back
     # from the server.
@@ -41,6 +41,7 @@ def client(msg, log_buffer=sys.stderr):
     except Exception as e:
         traceback.print_exc()
         sys.exit(1)
+        
     finally:
         # After you break out of the loop, close your client socket.
         print('closing socket', file=log_buffer)
