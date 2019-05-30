@@ -4,18 +4,22 @@ import traceback
 
 
 def server(log_buffer=sys.stderr):
-    # set an address for our server
+    # Set an address for our server.
     address = ('127.0.0.1', 10000)
+    
     # Instantiate a TCP socket with IPv4 Addressing.
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
+    
     # Socket setting to avoid 'port in use' error.
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    # log that we are building a server
+    
+    # Log that we are building a server.
     print("making a server on {0}:{1}".format(*address), file=log_buffer)
 
-    # TODO: bind your new sock 'sock' to the address above and begin to listen
-    #       for incoming connections
-
+    # Bind 'sock' to address above and begin to listen for incoming connections
+    sock.bind(address)
+    sock.listen(1)
+    
     try:
         # the outer loop controls the creation of new connection sockets. The
         # server will handle each incoming connection one at a time.
