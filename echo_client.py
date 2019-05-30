@@ -32,8 +32,9 @@ def client(msg, log_buffer=sys.stderr):
         #
         #       Log each chunk you receive.  Use the print statement below to
         #       do it. This will help in debugging problems
-        chunk = ''
-        print('received "{0}"'.format(chunk.decode('utf8')), file=log_buffer)
+        while True:
+            chunk = ''
+            print('received "{0}"'.format(chunk.decode('utf8')), file=log_buffer)
     except Exception as e:
         traceback.print_exc()
         sys.exit(1)
