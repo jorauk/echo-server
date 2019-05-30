@@ -36,6 +36,7 @@ def client(msg, log_buffer=sys.stderr):
             
             if len(chunk) < 16:
                 break
+                
     except Exception as e:
         traceback.print_exc()
         sys.exit(1)
