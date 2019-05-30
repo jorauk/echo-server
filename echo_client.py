@@ -23,7 +23,8 @@ def client(msg, log_buffer=sys.stderr):
     try:
         print('sending "{0}"'.format(msg), file=log_buffer)
         # Send your message to the server.
-        sock.sendall(msg.encode('utf8'))
+        msg = msg.encode('utf8')
+        sock.sendall(msg)
         
         # Accumulate the chunks you get to build the
         # entire reply from the server. Make sure that you have received
